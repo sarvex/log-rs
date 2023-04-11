@@ -2,6 +2,30 @@
 
 ## [Unreleased]
 
+## [0.4.18] - 2023-04-11
+
+### ⚠️ MSRV Bump: 1.31.0 to 1.60.0
+
+This release bumps `log`'s MSRV from `1.31.0` to `1.60.0`. This let us remove our `build.rs` file in favor of `#[cfg]`s added to Rust itself.
+
+The `log` crate can't reasonably bump its MSRV in breaking minor version bumps because it needs to shim newer versions through older ones to make sure calls to `log!`
+macros on the older version won't be lost. If we bumped the minor version we'd still need to compile that newer version in the older one to make this shimming work.
+
+### What's Changed
+
+* fix markdown links (again) by @hellow554 in https://github.com/rust-lang/log/pull/513
+* add cargo doc to workflow by @hellow554 in https://github.com/rust-lang/log/pull/515
+* Apply Clippy lints by @hellow554 in https://github.com/rust-lang/log/pull/516
+* Replace ad-hoc eq_ignore_ascii_case with slice::eq_ignore_ascii_case by @glandium in https://github.com/rust-lang/log/pull/519
+* fix up windows targets by @KodrAus in https://github.com/rust-lang/log/pull/528
+* typo fix by @jiangying000 in https://github.com/rust-lang/log/pull/529
+* Remove dependency on cfg_if by @EriKWDev in https://github.com/rust-lang/log/pull/536
+* GitHub Workflows security hardening by @sashashura in https://github.com/rust-lang/log/pull/538
+* Fix build status badge by @atouchet in https://github.com/rust-lang/log/pull/539
+* Add call_logger to the documentation by @a1ecbr0wn in https://github.com/rust-lang/log/pull/547
+* Remove build.rs file by @GuillaumeGomez in https://github.com/rust-lang/log/pull/543
+* Use stable internals for key-value API by @KodrAus in https://github.com/rust-lang/log/pull/550
+
 ## [0.4.17] - 2022-04-29
 
 * Update `kv_unstable` internal dependencies.
@@ -220,6 +244,7 @@ version using log 0.4.x to avoid losing module and file information.
 Look at the [release tags] for information about older releases.
 
 [Unreleased]: https://github.com/rust-lang-nursery/log/compare/0.4.17...HEAD
+[0.4.18]: https://github.com/rust-lang-nursery/log/compare/0.4.17...0.4.18
 [0.4.17]: https://github.com/rust-lang-nursery/log/compare/0.4.16...0.4.17
 [0.4.16]: https://github.com/rust-lang-nursery/log/compare/0.4.15...0.4.16
 [0.4.15]: https://github.com/rust-lang-nursery/log/compare/0.4.13...0.4.15
